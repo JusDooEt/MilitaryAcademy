@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QDebug>
+#include <QMessageBox>
 
 const int M_MIN_HEIGHT = 65;
 const int M_MAX_HEIGHT = 80;
@@ -15,6 +16,17 @@ const int F_MIN_WEIGHT = 110;
 const int F_MAX_WEIGHT = 185;
 const int MIN_AGE = 17;
 const int MAX_AGE = 40;
+
+enum RejectReason
+{
+    LOW_AGE,
+    HIGH_AGE,
+    LOW_WEIGHT,
+    HIGH_WEIGHT,
+    LOW_HEIGHT,
+    HIGH_HEIGHT,
+    NONE
+};
 
 class Applicants : public QObject
 {
@@ -38,6 +50,7 @@ public:
     double getHeight() const;
     bool isAccepted() const;
     void print() const;
+    RejectReason getReason() const;
 
 
 private:
@@ -47,6 +60,7 @@ private:
     double  weight;
     double  height;
     bool    accepted;
+    RejectReason reason;
 signals:
 };
 

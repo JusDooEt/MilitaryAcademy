@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>474</width>
-    <height>431</height>
+    <width>547</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -132,7 +132,7 @@
             <item>
              <widget class="QDoubleSpinBox" name="weightDSpinBox">
               <property name="suffix">
-               <string> kg</string>
+               <string> lbs</string>
               </property>
               <property name="maximum">
                <double>500.000000000000000</double>
@@ -142,7 +142,7 @@
             <item>
              <widget class="QDoubleSpinBox" name="heightDSpinBox">
               <property name="suffix">
-               <string> cm</string>
+               <string> in</string>
               </property>
               <property name="maximum">
                <double>200.000000000000000</double>

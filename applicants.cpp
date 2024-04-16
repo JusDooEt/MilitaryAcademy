@@ -13,6 +13,7 @@ Applicants::Applicants(QObject *parent, QString name, char sex, int age, double 
     this->weight = weight;
     this->height = height;
     this->accepted = false;
+    reason = NONE;
 }
 
 void Applicants::setName(QString name)
@@ -48,12 +49,31 @@ void Applicants::setAcceptance(bool accepted)
 void Applicants::validate()
 {
     print();
-    setAcceptance( (sex == 'M' && age >= MIN_AGE && age <= MAX_AGE &&
-                  weight >= M_MIN_WEIGHT && weight <= M_MAX_WEIGHT &&
-                  height >= M_MIN_HEIGHT && height <= M_MAX_HEIGHT) ||
-                 (sex == 'F' && age >= MIN_AGE && age <= MAX_AGE &&
-                  weight >= F_MIN_WEIGHT && weight <= F_MAX_WEIGHT &&
-                                                                                                                                                                               height >= F_MIN_HEIGHT && height <= F_MAX_HEIGHT));
+
+    if((sex == 'M' && age >= MIN_AGE && age <= MAX_AGE &&
+              weight >= M_MIN_WEIGHT && weight <= M_MAX_WEIGHT &&
+              height >= M_MIN_HEIGHT && height <= M_MAX_HEIGHT) ||
+             (sex == 'F' && age >= MIN_AGE && age <= MAX_AGE &&
+              weight >= F_MIN_WEIGHT && weight <= F_MAX_WEIGHT &&
+              height >= F_MIN_HEIGHT && height <= F_MAX_HEIGHT))
+    {
+        accepted = true;
+    }
+    else
+    {
+        if (age < MIN_AGE)
+            reason = LOW_AGE;
+        else if (age > MAX_AGE)
+            reason = HIGH_AGE;
+        else if ((sex == 'M' && weight < M_MIN_WEIGHT) || (sex == 'F' && weight < F_MIN_WEIGHT))
+            reason = LOW_WEIGHT;
+        else if ((sex == 'M' && weight > M_MAX_WEIGHT) || (sex == 'F' && weight > F_MAX_WEIGHT))
+            reason = HIGH_WEIGHT;
+        else if ((sex == 'M' && height < M_MIN_HEIGHT) || (sex == 'F' && height < F_MIN_HEIGHT))
+            reason = LOW_HEIGHT;
+        else if ((sex == 'M' && height > M_MAX_HEIGHT) || (sex == 'F' && height > F_MAX_HEIGHT))
+            reason = HIGH_HEIGHT;
+    }
 }
 
 QString Applicants::getName() const
@@ -93,5 +113,10 @@ void Applicants::print() const
     qDebug() << "Sex: " << sex;
     qDebug() << "Weight: " << weight;
     qDebug() << "Height: " << height;
+}
+
+RejectReason Applicants::getReason() const
+{
+    return reason;
 }
 

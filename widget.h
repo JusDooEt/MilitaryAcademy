@@ -2,8 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
-#include <QMessageBox>
-#include "applicants.h"
+#include "appLogDialog.h"
 #include <vector>
 
 QT_BEGIN_NAMESPACE
@@ -29,14 +28,22 @@ private slots:
 
     void editRoster(Applicants* ptr);
 
+    void on_pushButton_2_clicked();
+
 private:
-    Ui::Widget *ui;
+    Ui::Widget              *ui;
+    AppLogDialog            *appLogDialog;
     std::vector<Applicants*> list;
     std::vector<Applicants*> roster;
+    QString                  fileName;
+    QString                  rosterFile;
 
+    QString checkInput();
+    void appendTextFile(QString name, Applicants *ptr);
 
 signals:
     void accepted(Applicants*);
+
 };
 
 
