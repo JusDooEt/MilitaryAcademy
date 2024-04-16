@@ -1,5 +1,7 @@
 # Military Academy
 ![image](https://github.com/JusDooEt/MilitaryAcademy/assets/152052216/45e73607-3ba5-4d9d-96fa-7a16109e6e29)
+![image](https://github.com/JusDooEt/MilitaryAcademy/assets/152052216/9400f2cb-2ad1-4ad3-8b0b-9c026de9e722)
+
 
 ## About
 This program will allow the user to enter data for a person applying to a military academy. The program will use defined minimum and maximum values for age, weight, and height per gender to compare against the applicants data that was input into the program. A different gender will have different requirement values in order to be admitted to the academy. The program will display the applicants name, age and sex to the roster text edit, on the right hand side of the program, if the applicant is accepted to the academy.
