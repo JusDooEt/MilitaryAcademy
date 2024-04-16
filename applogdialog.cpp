@@ -108,11 +108,12 @@ void AppLogDialog::on_appListWidget_itemActivated(QListWidgetItem *item)
 
     index = ui->appListWidget->row(item);
 
-    text = "Weight: " + QString::number(list[index]->getWeight()) + "\n" +
+    text = list[index]->getName() + "\n" +
+           "Weight: " + QString::number(list[index]->getWeight()) + "\n" +
            "Height: " + QString::number(list[index]->getHeight()) + "\n";
     if(list[index]->isAccepted())
     {
-        text += "Applicant Accpeted";
+        text += "Applicant Accepted";
     }
     else
     {
