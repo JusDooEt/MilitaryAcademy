@@ -337,3 +337,14 @@ void Widget::on_clearButton_2_clicked()
     clearRoster();
 }
 
+
+void Widget::on_clearButton_clicked()
+{
+    ui->nameLineEdit->clear();
+    ui->ageSpinBox->setValue(0);
+    ui->weightDSpinBox->setValue(0);
+    ui->heightDSpinBox->setValue(0);
+    ui->mCheckBox->setCheckState(Qt::Unchecked);
+    ui->fCheckBox->setCheckState(Qt::Unchecked);
+}
+

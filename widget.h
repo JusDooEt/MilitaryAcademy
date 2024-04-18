@@ -38,6 +38,8 @@ private slots:
 
     void on_clearButton_2_clicked();
 
+    void on_clearButton_clicked();
+
 private:
     Ui::Widget              *ui;
     AppLogDialog            *appLogDialog;

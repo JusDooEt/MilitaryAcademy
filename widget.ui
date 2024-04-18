@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Widget</string>
+   <string>Military Academy</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
