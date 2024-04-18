@@ -10,7 +10,11 @@ This program will allow the user to enter data for a person applying to a milita
 ### Applicants
 This class has variable members for an applicant's name, sex, age, weight, height, and acceptance status. It also has the appropriate mutators and accessors to correlate with the class variable members. This class also has a public validate function that uses the sex, age, weight and height variable members to set the applicant's acceptance status to true or false. The validate function can be called from anywhere in the program since it is defined as a public function. This class also includes a print function that will print the details of an individual applicant to the console for debugging purposes. 
 
+### AppLogDialog
+This class defines a dialog box that can be dynamically created in the main application code. This class will read from the applicantList.txt file in order to create a vector of applicants and fill out the item list component in the UI. When a user double clicks an applicant in the item list component, the selected applicant's full details will be displayed in the lower text edit. Reading from the applicantList.txt file will allow the program to read a history of applicant data even if the data was entered in previous sessions. This allows the "state" of the application to be saved and for a history of data to be stored after the user closes the application.
+
 ## To-Do
-- [ ] Create a new tab to display all of the people who have applied and all of their personal data.
-- [ ] Create an output file for the roster and all applicants to “save” progress when closing and relaunching the program.
+- [x] Create a new tab to display all of the people who have applied and all of their personal data.
+- [x] Create an output file for the roster and all applicants to “save” progress when closing and relaunching the program.
+- [ ] Create a clear button in the appLogDialog to clear the list and the text file.
 
