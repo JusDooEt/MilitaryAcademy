@@ -203,6 +203,22 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="clearButton_2">
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>

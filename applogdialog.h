@@ -22,7 +22,12 @@ public:
     void setList(std::vector<Applicants*> appLog);
 
 private slots:
+    void clearList();
+
     void on_appListWidget_itemActivated(QListWidgetItem *item);
+
+    void on_clearButton_clicked();
+
 
 private:
     Ui::AppLogDialog *ui;

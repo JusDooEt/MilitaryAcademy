@@ -20,6 +20,10 @@ public:
     ~Widget();
 
 private slots:
+    void clearRoster();
+
+    void initializeRoster();
+
     void on_enterButton_clicked();
 
     void on_fCheckBox_stateChanged(int arg1);
@@ -29,6 +33,10 @@ private slots:
     void editRoster(Applicants* ptr);
 
     void on_pushButton_2_clicked();
+
+
+
+    void on_clearButton_2_clicked();
 
 private:
     Ui::Widget              *ui;

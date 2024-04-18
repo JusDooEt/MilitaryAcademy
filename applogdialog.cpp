@@ -36,6 +36,29 @@ void AppLogDialog::setList(std::vector<Applicants*> appLog)
     list = appLog;
 }
 
+void AppLogDialog::clearList()
+{
+    QFile file("applicantList.txt");
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+    {
+        qDebug() << "Error opening " << file.fileName() << ": " << file.OpenError;
+    }
+    else
+    {
+        QTextStream fout(&file);
+        fout << "";
+    }
+
+    file.close();
+
+    for(int i = list.size() - 1; i >= 0; --i)
+    {
+        delete list[i];
+        list[i] = nullptr;
+    }
+    list.clear();
+}
+
 void AppLogDialog::readFile(QString fileName)
 {
     QString name;
@@ -152,5 +175,14 @@ void AppLogDialog::on_appListWidget_itemActivated(QListWidgetItem *item)
         }
     }
     ui->detailsTextEdit->setText(text);
+}
+
+
+
+
+void AppLogDialog::on_clearButton_clicked()
+{
+    ui->appListWidget->clear();
+    clearList();
 }
 

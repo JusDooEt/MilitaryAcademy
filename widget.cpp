@@ -10,6 +10,8 @@ Widget::Widget(QWidget *parent)
     appLogDialog = nullptr;
     fileName = "applicantList.txt";
     rosterFile = "roster.txt";
+
+    initializeRoster();
     connect(this, &Widget::accepted, this, &Widget::editRoster);
 
 }
@@ -21,7 +23,98 @@ Widget::~Widget()
         delete list[i];
     }
     list.clear();
+    for(int i = roster.size() - 1; i >= 0; i--)
+    {
+        delete roster[i];
+    }
+    roster.clear();
     delete ui;
+}
+
+void Widget::clearRoster()
+{
+    QFile file(rosterFile);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+    {
+        qDebug() << "Error opening " << file.fileName() << ": " << file.OpenError;
+    }
+    else
+    {
+        QTextStream fout(&file);
+        fout << "";
+    }
+
+    file.close();
+
+    for(int i = roster.size() - 1; i >= 0; --i)
+    {
+        delete roster[i];
+        roster[i] = nullptr;
+    }
+    roster.clear();
+}
+
+void Widget::initializeRoster()
+{
+    QString str;
+    QString name;
+    int age;
+    int num;
+    char sex;
+    double weight;
+    double height;
+    bool accepted;
+
+    QFile file(rosterFile);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Error opening " << file.fileName() << ": " << file.OpenError;
+    }
+    else
+    {
+
+        for(int i = roster.size() - 1; i >= 0; i--)
+        {
+            delete roster[i];
+        }
+        roster.clear();
+        ui->rosterTextEdit->clear();
+
+        QTextStream fin(&file);
+        while(!fin.atEnd())
+        {
+            name = fin.readLine();
+            fin >> sex;
+            fin.readLine();
+            fin >> age;
+            fin.readLine();
+            fin >> weight;
+            fin.readLine();
+            fin >> height;
+            fin.readLine();
+            fin >> num;
+            fin.readLine();
+            if(num == 1)
+                accepted = true;
+            else
+                accepted = false;
+
+
+            roster.push_back(new Applicants(this, name, sex, age, weight, height));
+            roster.back()->validate();
+            roster.back()->setAcceptance(accepted);
+
+            qDebug() << "Applicant Read";
+            str = name + "\n";
+            str += "Age: " + QString::number(age) + "\n";
+            str += "Sex: " + QString(sex) + "\n";
+
+            ui->rosterTextEdit->append(str);
+        }
+
+
+    }
+    file.close();
 }
 
 void Widget::on_enterButton_clicked()
@@ -168,6 +261,7 @@ void Widget::editRoster(Applicants *ptr)
            "Sex: " + ptr->getSex() + "\n";
     ui->rosterTextEdit->append(data);
     roster.push_back(ptr);
+    appendTextFile(rosterFile, roster.back());
 }
 
 void Widget::on_pushButton_2_clicked()
@@ -232,5 +326,14 @@ void Widget::appendTextFile(QString name, Applicants *ptr)
         fout << QString::number(ptr->isAccepted() ? 1 : 0) << Qt::endl;
     }
     file.close();
+}
+
+
+
+
+void Widget::on_clearButton_2_clicked()
+{
+    ui->rosterTextEdit->clear();
+    clearRoster();
 }
 
